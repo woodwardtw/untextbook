@@ -8,6 +8,33 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+//***************HOME***********************//
+function untextbook_chapters(){
+	$html = '';
+	if( have_rows('chapters') ):
+
+	    // Loop through rows.
+	    while( have_rows('chapters') ) : the_row();
+
+	        // Load sub field value.
+	        $chapter = get_sub_field('chapter');
+	        // Do something...
+	        $title = $chapter->post_title;
+	        $id = $chapter->ID;
+	        $url = get_permalink($id);
+	        $thumb = get_the_post_thumbnail($id);
+	        $html .= "<div class='col-md-6'><div class='chapter-list'>{$thumb}<a href='{$url}'><h2>{$title}</h2></a></div></div>";
+	    // End loop.
+	    endwhile;
+	    return "<div class='row'>{$html}</div>";
+		// No value.
+		else :
+		    // Do something...
+		endif;
+}
+
+
+
 //***************MODULES********************//
 
 //MODULE AUTHORS

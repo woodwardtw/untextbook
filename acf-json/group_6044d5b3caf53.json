@@ -57,7 +57,7 @@
             "min": 0,
             "max": 0,
             "layout": "table",
-            "button_label": "",
+            "button_label": "Add chapter",
             "sub_fields": [
                 {
                     "key": "field_6044e4d41989e",
@@ -101,5 +101,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1615127806
+    "modified": 1615128166
 }
