@@ -14,13 +14,13 @@ window.addEventListener('load', function(event) {
 
 function showHomeModal(){
 	if(document.querySelector('#home-page-wrapper')){
-		if (document.cookie.indexOf('modal_shown=') >= 0) {
-		 //do nothing if modal_shown cookie is present
-		} else {
+		// if (document.cookie.indexOf('modal_shown=') >= 0) {
+		//  //do nothing if modal_shown cookie is present
+		// } else {
 		  jQuery("#homeModal").modal()
-		  document.cookie = 'modal_shown=seen'; //set cookie modal_shown
+		 // document.cookie = 'modal_shown=seen'; //set cookie modal_shown
 		  //cookie will expire when browser is closed 
-		}
+		//}
 	}
 }
 

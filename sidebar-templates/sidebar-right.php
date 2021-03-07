@@ -29,12 +29,12 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 		$static_id = $post->ID;
 		$type = get_post_type($static_id);
 		
-		if ($type === 'module'){
+		if ($type === 'chapter'){
 			echo data_praxis_get_lessons($static_id, get_the_permalink());
 		} 
 		if ($type === 'lesson'){
 			// The Query
-			$args = array( 'post_type' => 'module' );
+			$args = array( 'post_type' => 'chapter' );
 			$module_query = new WP_Query( $args );
 			 
 			// get all the modules for the lesson's page

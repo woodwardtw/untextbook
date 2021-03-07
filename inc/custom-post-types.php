@@ -14,39 +14,39 @@ defined( 'ABSPATH' ) || exit;
 // Register Custom Post Type module
 // Post Type Key: module
 
-function create_module_cpt() {
+function create_chapter_cpt() {
 
   $labels = array(
-    'name' => __( 'Modules', 'Post Type General Name', 'textdomain' ),
-    'singular_name' => __( 'Module', 'Post Type Singular Name', 'textdomain' ),
-    'menu_name' => __( 'Module', 'textdomain' ),
-    'name_admin_bar' => __( 'Module', 'textdomain' ),
-    'archives' => __( 'Module Archives', 'textdomain' ),
-    'attributes' => __( 'Module Attributes', 'textdomain' ),
-    'parent_item_colon' => __( 'Module:', 'textdomain' ),
-    'all_items' => __( 'All Modules', 'textdomain' ),
-    'add_new_item' => __( 'Add New Module', 'textdomain' ),
+    'name' => __( 'Chapters', 'Post Type General Name', 'textdomain' ),
+    'singular_name' => __( 'Chapter', 'Post Type Singular Name', 'textdomain' ),
+    'menu_name' => __( 'Chapter', 'textdomain' ),
+    'name_admin_bar' => __( 'Chapter', 'textdomain' ),
+    'archives' => __( 'Chapter Archives', 'textdomain' ),
+    'attributes' => __( 'Chapter Attributes', 'textdomain' ),
+    'parent_item_colon' => __( 'Chapter:', 'textdomain' ),
+    'all_items' => __( 'All Chapters', 'textdomain' ),
+    'add_new_item' => __( 'Add New Chapter', 'textdomain' ),
     'add_new' => __( 'Add New', 'textdomain' ),
-    'new_item' => __( 'New Module', 'textdomain' ),
-    'edit_item' => __( 'Edit Module', 'textdomain' ),
-    'update_item' => __( 'Update Module', 'textdomain' ),
-    'view_item' => __( 'View Module', 'textdomain' ),
-    'view_items' => __( 'View Modules', 'textdomain' ),
-    'search_items' => __( 'Search Modules', 'textdomain' ),
+    'new_item' => __( 'New Chapter', 'textdomain' ),
+    'edit_item' => __( 'Edit Chapter', 'textdomain' ),
+    'update_item' => __( 'Update Chapter', 'textdomain' ),
+    'view_item' => __( 'View Chapter', 'textdomain' ),
+    'view_items' => __( 'View Chapter', 'textdomain' ),
+    'search_items' => __( 'Search Chapters', 'textdomain' ),
     'not_found' => __( 'Not found', 'textdomain' ),
     'not_found_in_trash' => __( 'Not found in Trash', 'textdomain' ),
     'featured_image' => __( 'Featured Image', 'textdomain' ),
     'set_featured_image' => __( 'Set featured image', 'textdomain' ),
     'remove_featured_image' => __( 'Remove featured image', 'textdomain' ),
     'use_featured_image' => __( 'Use as featured image', 'textdomain' ),
-    'insert_into_item' => __( 'Insert into module', 'textdomain' ),
-    'uploaded_to_this_item' => __( 'Uploaded to this module', 'textdomain' ),
-    'items_list' => __( 'Module list', 'textdomain' ),
-    'items_list_navigation' => __( 'Module list navigation', 'textdomain' ),
-    'filter_items_list' => __( 'Filter Module list', 'textdomain' ),
+    'insert_into_item' => __( 'Insert into chapter', 'textdomain' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this chapter', 'textdomain' ),
+    'items_list' => __( 'Chapter list', 'textdomain' ),
+    'items_list_navigation' => __( 'Chapter list navigation', 'textdomain' ),
+    'filter_items_list' => __( 'Filter Chapter list', 'textdomain' ),
   );
   $args = array(
-    'label' => __( 'module', 'textdomain' ),
+    'label' => __( 'Chapter', 'textdomain' ),
     'description' => __( '', 'textdomain' ),
     'labels' => $labels,
     'menu_icon' => '',
@@ -67,13 +67,13 @@ function create_module_cpt() {
     'capability_type' => 'post',
     'menu_icon' => 'dashicons-universal-access-alt',
   );
-  register_post_type( 'module', $args );
+  register_post_type( 'Chapter', $args );
   
   // flush rewrite rules because we changed the permalink structure
   global $wp_rewrite;
   $wp_rewrite->flush_rules();
 }
-add_action( 'init', 'create_module_cpt', 0 );
+add_action( 'init', 'create_chapter_cpt', 0 );
 
 
 //lesson custom post type

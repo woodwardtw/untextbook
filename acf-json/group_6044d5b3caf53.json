@@ -1,11 +1,30 @@
 {
     "key": "group_6044d5b3caf53",
-    "title": "Home Modal",
+    "title": "Home Page",
     "fields": [
+        {
+            "key": "field_6044db4e323cc",
+            "label": "Modal Title",
+            "name": "modal_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
         {
             "key": "field_6044d5ba2a241",
             "label": "Modal Message",
-            "name": "moda",
+            "name": "modal",
             "type": "wysiwyg",
             "instructions": "This is the message that shows up when viewers first see the main page of the site.",
             "required": 0,
@@ -20,6 +39,49 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
+        },
+        {
+            "key": "field_6044e3b932ca0",
+            "label": "Chapters",
+            "name": "chapters",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_6044e4d41989e",
+                    "label": "Chapter",
+                    "name": "chapter",
+                    "type": "post_object",
+                    "instructions": "Choose the chapters you'd like to see on the home page.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "chapter"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "object",
+                    "ui": 1
+                }
+            ]
         }
     ],
     "location": [
@@ -39,5 +101,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1615124017
+    "modified": 1615127806
 }
