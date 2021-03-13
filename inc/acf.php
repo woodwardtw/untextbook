@@ -22,11 +22,16 @@ function untextbook_chapters(){
 	        $title = $chapter->post_title;
 	        $id = $chapter->ID;
 	        $url = get_permalink($id);
-	        $thumb = get_the_post_thumbnail($id);
-	        $html .= "<div class='col-md-6'><div class='chapter-list'>{$thumb}<a href='{$url}'><h2>{$title}</h2></a></div></div>";
+	        $summary = get_field('summary', $id);
+	        if(get_the_post_thumbnail($id)){
+	        	$thumb = get_the_post_thumbnail($id);
+	        } else {
+	        	$thumb = "";
+	        }
+	        $html .= "<div class='col-md-4'><a href='{$url}'><div class='chapter-list'><h2>{$title}</h2>{$thumb}</a><div class='chapter-summary'>{$summary}</div></div></div>";
 	    // End loop.
 	    endwhile;
-	    return "<div class='row'>{$html}</div>";
+	    return "<div class='row chapter-menu'>{$html}</div>";
 		// No value.
 		else :
 		    // Do something...
@@ -38,7 +43,7 @@ function untextbook_chapters(){
 //***************MODULES********************//
 
 //MODULE AUTHORS
-function data_praxis_authors(){
+function untextbook_authors(){
 	if(get_field('authors')){
 		$authors = get_field('authors');
 		$html = "<div class='authors-block'> Authored by ";		
@@ -50,7 +55,7 @@ function data_praxis_authors(){
 
 
 //ABSTRACT
-function data_praxis_abstract(){
+function untextbook_abstract(){
   $html = '';
   $abstract = get_field('abstract');
 
@@ -64,7 +69,7 @@ function data_praxis_abstract(){
 
 
 //LEARNING OUTCOMES
-function data_praxis_learning_outcomes(){
+function untextbook_learning_outcomes(){
 	$html = "<div class='learning-outcomes-block'><h2>Learning Outcomes</h2><ol class='learning-outcomes-list'>";
 	if( have_rows('learning_outcomes_block') ):
 
@@ -86,7 +91,7 @@ function data_praxis_learning_outcomes(){
 
 // intro media
 
-function data_praxis_intro_media(){
+function untextbook_intro_media(){
 	$html = '';
   	$media = get_field('intro_media');
     if( $media) {      
@@ -96,8 +101,19 @@ function data_praxis_intro_media(){
     }
 }
 
+//main content 
+
+function untextbook_main_content(){
+	$html = '';
+  	$content = get_field('main_content');
+    if( $content) {      
+      $html .= "<div class='main-content' id='main'>{$content}</div>";  
+     return $html;    
+    }
+}
+
 //glossary 
-function data_praxis_glossary(){
+function untextbook_glossary(){
 	$img_base = get_template_directory_uri();
 	//$img = "/imgs/wc/a-z.png";
 	$html = '<div class="accordion" id="glossary"><div class="glossary"><h2 id="vocabHeader"><a href="" class="btn-plus collapsed" type="button" data-toggle="collapse" data-target="#words">Glossary</a></h2><ul id="words" class="collapse " aria-labelledby="vocabHeader" data-parent="#glossary">';
@@ -126,7 +142,7 @@ function data_praxis_glossary(){
 
 
 //recommended readings
-	function data_praxis_recommended_readings(){
+	function untextbook_recommended_readings(){
 		$img_base = get_template_directory_uri();
 		//$img = "/imgs/wc/book.png";
 		$html = '<div class="readings"><h2>Recommended Readings</h2><ol>';
@@ -151,7 +167,7 @@ function data_praxis_glossary(){
 	
 //resources 
 
-	function data_praxis_resources_repeater(){
+	function untextbook_resources_repeater(){
 		$img_base = get_template_directory_uri();
 		//$img = "/imgs/wc/kee-2.png";
 		$html = '<div class="resources"><h2>Key Complementary Resources</h2><ol>';
@@ -176,7 +192,7 @@ function data_praxis_glossary(){
 		}
 	
 //get lessons 
-		function data_praxis_get_lessons($id, $current_location){
+		function untextbook_get_lessons($id, $current_location){
 			global $post;
 			$lessons = get_field('associated_lessons', $id);
 			if( $lessons ){
@@ -204,7 +220,7 @@ function data_praxis_glossary(){
 
 
 //****************************LESSONS*****************************//
-function data_praxis_quote(){
+function untextbook_quote(){
 	$link = '';
 	$attribution = '';
 	//($user['is_logged_in'] ? $user['first_name'] : 'Guest').'!';
@@ -222,7 +238,7 @@ function data_praxis_quote(){
 	}
 }
 
-function data_praxis_lesson_intro(){
+function untextbook_lesson_intro(){
 	if(get_field('introduction')){
 		$intro = get_field('introduction');
 		return "<div class='intro'>{$intro}</div>";
@@ -230,7 +246,7 @@ function data_praxis_lesson_intro(){
 
 }
 
-function data_praxis_lesson_sections_repeater(){
+function untextbook_lesson_sections_repeater(){
 	$html = '';
 	if( have_rows('sections') ):
 
@@ -263,7 +279,7 @@ function data_praxis_lesson_sections_repeater(){
 
 //PEOPLE PAGE
 
-function data_praxis_researchers(){
+function untextbook_researchers(){
 	$html = '';
 	if( have_rows('researchers') ):
 
@@ -321,9 +337,9 @@ $html = '';
 //****************************FUNCTIONAL*****************************//
 
 //save acf json
-		add_filter('acf/settings/save_json', 'data_praxis_json_save_point');
+		add_filter('acf/settings/save_json', 'untextbook_json_save_point');
 		 
-		function data_praxis_json_save_point( $path ) {
+		function untextbook_json_save_point( $path ) {
 		    
 		    // update path
 		    $path = get_stylesheet_directory(__FILE__) . '/acf-json'; //replace w get_stylesheet_directory() for theme
@@ -336,9 +352,9 @@ $html = '';
 
 
 		// load acf json
-		add_filter('acf/settings/load_json', 'data_praxis_json_load_point');
+		add_filter('acf/settings/load_json', 'untextbook_json_load_point');
 
-		function data_praxis_json_load_point( $paths ) {
+		function untextbook_json_load_point( $paths ) {
 		    
 		    // remove original path (optional)
 		    unset($paths[0]);

@@ -21,9 +21,9 @@ defined( 'ABSPATH' ) || exit;
 	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 
 	<div class="lesson-content">
-		<?php echo data_praxis_quote();?>
-		<?php echo data_praxis_lesson_intro();?>
-		<?php echo data_praxis_lesson_sections_repeater();?>
+		<?php echo untextbook_quote();?>
+		<?php echo untextbook_lesson_intro();?>
+		<?php echo untextbook_lesson_sections_repeater();?>
 		
 
 		<?php

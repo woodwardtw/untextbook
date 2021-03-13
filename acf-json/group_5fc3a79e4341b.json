@@ -1,7 +1,26 @@
 {
     "key": "group_5fc3a79e4341b",
-    "title": "Module",
+    "title": "Chapter",
     "fields": [
+        {
+            "key": "field_604cbbbfef2de",
+            "label": "Summary",
+            "name": "summary",
+            "type": "textarea",
+            "instructions": "This is the teaser for the home page. Keep it short. Keep it interesting.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 5,
+            "new_lines": ""
+        },
         {
             "key": "field_5fc3a7a403d88",
             "label": "Author(s)",
@@ -25,7 +44,7 @@
             "key": "field_5fc3a9fbbeeb0",
             "label": "Abstract",
             "name": "abstract",
-            "type": "wysiwyg",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -35,50 +54,10 @@
                 "id": ""
             },
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
-        },
-        {
-            "key": "field_5fc3aa3758e36",
-            "label": "Learning Outcomes Block",
-            "name": "learning_outcomes_block",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Add outcome",
-            "sub_fields": [
-                {
-                    "key": "field_5fc3aa5158e37",
-                    "label": "Learning Outcome",
-                    "name": "learning_outcome",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                }
-            ]
+            "placeholder": "",
+            "maxlength": 600,
+            "rows": "",
+            "new_lines": ""
         },
         {
             "key": "field_5fc6ac7274a66",
@@ -175,10 +154,29 @@
             ]
         },
         {
+            "key": "field_604cbfad42558",
+            "label": "Main Content",
+            "name": "main_content",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
             "key": "field_5fc6b6ef25641",
             "label": "Recommended Readings",
             "name": "recommended_readings",
-            "type": "repeater",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -187,104 +185,11 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Add reading",
-            "sub_fields": [
-                {
-                    "key": "field_5fc6b70725642",
-                    "label": "Citation",
-                    "name": "citation",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": "",
-                    "new_lines": ""
-                },
-                {
-                    "key": "field_5fc6b72725643",
-                    "label": "Link",
-                    "name": "link",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                }
-            ]
-        },
-        {
-            "key": "field_5fc942ef32f3a",
-            "label": "Complementary Resources",
-            "name": "resources",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "",
-            "sub_fields": [
-                {
-                    "key": "field_5fc9430132f3b",
-                    "label": "Title",
-                    "name": "title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5fc9430732f3c",
-                    "label": "Link",
-                    "name": "link",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                }
-            ]
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_5fc946fa9fc84",
@@ -317,7 +222,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "module"
+                "value": "chapter"
             }
         ]
     ],
@@ -329,20 +234,17 @@
     "hide_on_screen": [
         "permalink",
         "the_content",
-        "excerpt",
         "discussion",
         "comments",
         "revisions",
         "slug",
-        "author",
         "format",
         "page_attributes",
-        "featured_image",
         "categories",
         "tags",
         "send-trackbacks"
     ],
     "active": true,
     "description": "",
-    "modified": 1611499175
+    "modified": 1615643217
 }

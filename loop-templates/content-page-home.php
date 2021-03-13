@@ -22,7 +22,20 @@ defined( 'ABSPATH' ) || exit;
 	<div class="entry-content">
 
 		<?php the_content(); ?>
+		<!--CHAPTER LIST-->
+		<h2>Choose a Chapter</h2>
 		<?php echo untextbook_chapters();?>
+		<!--CONTRIBUTE OPTIONS-->
+		<h2>Contribute</h2>
+		<div class="row">
+			<div class="col-md-4"><h3>Rant</h3></div>
+			<div class="col-md-4"><h3>Remix</h3></div>
+			<div class="col-md-4"><h3>Recast</h3></div>
+			<div class="col-md-4"><h3>Reflect</h3></div>
+			<div class="col-md-4"><h3>e?</h3></div>
+			<div class="col-md-4"><h3>f?</h3></div>
+		</div>
+
 		<?php
 		wp_link_pages(
 			array(

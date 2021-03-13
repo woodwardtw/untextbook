@@ -30,7 +30,7 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 		$type = get_post_type($static_id);
 		
 		if ($type === 'chapter'){
-			echo data_praxis_get_lessons($static_id, get_the_permalink());
+			echo untextbook_get_lessons($static_id, get_the_permalink());
 		} 
 		if ($type === 'lesson'){
 			// The Query
@@ -43,7 +43,7 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 			        $module_query->the_post();
 			        $lessons = get_field('associated_lessons', $post->ID);
 			        if (in_array($static_id, $lessons)){
-			        	echo data_praxis_get_lessons($post->ID, get_the_permalink($static_id));
+			        	echo untextbook_get_lessons($post->ID, get_the_permalink($static_id));
 			        }
 			    }
 			} else {

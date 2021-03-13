@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php the_content(); ?>
 		<div class="row">
-			<?php echo data_praxis_researchers();?>
+			<?php echo untextbook_researchers();?>
 		</div>
 		<?php
 		wp_link_pages(

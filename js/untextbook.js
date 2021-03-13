@@ -18,8 +18,7 @@ function showHomeModal(){
 		 //do nothing if modal_shown cookie is present
 		} else {
 		  jQuery("#homeModal").modal()
-		 document.cookie = 'modal_shown=seen'; //set cookie modal_shown
-		  cookie will expire when browser is closed 
+		 document.cookie = 'modal_shown=seen'; //set cookie modal_shown cookie will expire when browser is closed 
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Single module partial template
+ * Single chapter partial template
  *
  * @package UnderStrap
  */
@@ -21,14 +21,15 @@ defined( 'ABSPATH' ) || exit;
 	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 
 	<div class="module-content">
-		<?php echo data_praxis_authors();?>
-		<?php echo data_praxis_abstract();?>
-		<?php echo data_praxis_learning_outcomes();?>
-		<?php echo data_praxis_intro_media();?>
-		<?php echo data_praxis_glossary();?>
-		<?php echo data_praxis_recommended_readings();?>
-		<?php echo data_praxis_resources_repeater();?>
-		<?php echo data_praxis_get_lessons($post->ID, get_the_permalink());?>
+		<?php echo untextbook_authors();?>
+		<?php echo untextbook_abstract();?>
+		<?php echo untextbook_learning_outcomes();?>
+		<?php echo untextbook_intro_media();?>
+		<?php echo untextbook_glossary();?>
+		<?php echo untextbook_main_content();?>
+		<?php echo untextbook_recommended_readings();?>
+		<?php echo untextbook_resources_repeater();?>
+		<?php echo untextbook_get_lessons($post->ID, get_the_permalink());?>
 		<?php //the_content(); ?>
 		
 
