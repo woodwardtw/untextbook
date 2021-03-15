@@ -30,7 +30,13 @@ body {
 	margin-bottom: 40px;
 	position: relative;
 	border: 1px solid #efefef;
+	transition: 0.6s linear;
 }
+
+.chapter-list:hover { 
+	border: 1px solid $orange; 
+}
+
 
 .chapter-summary {
 	position: absolute;
