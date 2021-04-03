@@ -331,6 +331,88 @@ $html = '';
 }
 
 
+//FRONT END FORMS 
+function book_get_front_form_status(){
+	$status = get_field('live_content', 'option');
+	return $status;
+}
+
+function book_get_login_status(){
+	$status = get_field('logged_in', 'option');
+	return $status;
+}
+
+function voices_form_creation($type){
+	$status = book_get_front_form_status();
+	//var_dump($status);
+	$args = array(
+			'id' => 'new-resource',
+			'fields' => array(' '),
+	        'post_id'       => 'new_post',
+	        'post_title'   => true,
+			'post_content'	=> true,
+	        'new_post'      => array(
+	            'post_type'     => 'voice',
+	            'tags_input' => array($type),
+	        ),
+	        'submit_value'  => 'Create new ' . $type,
+	);
+	if($status === 'live'){
+		$args['new_post']['post_status'] = 'publish';
+	} else {
+		$args['new_post']['post_status'] = 'draft';
+	}
+	return acf_form($args);
+}
+
+//FRONT END FORM RELATIONSHIP BUILDER
+
+function untextbook_acf_form_submission_additions($post_id){
+	$new_post_id = $post_id;
+	$chapter_id = get_the_id();
+	if(get_post_type($new_post_id) === 'voice'){
+		if(get_field('associated_voices', $chapter_id)){
+			$voices = get_field('associated_voices', $chapter_id);
+		} else {
+			$voices = array();
+		}
+		array_push($voices, $new_post_id);
+		update_field('associated_voices', $voices, $chapter_id);
+	}	
+}
+
+add_action('acf/save_post', 'untextbook_acf_form_submission_additions', 20, 1912);
+
+function untextbook_show_voices($tag){
+	$html = '';
+	$chapter_id = get_the_id();
+	if(get_field('associated_voices', $chapter_id)){
+			$voices = get_field('associated_voices', $chapter_id);
+			//var_dump($voices);
+			foreach ($voices as $key => $voice) {
+				$tags = get_the_tags($voice);
+				$tag_names = untextbook_tag_names($tags);
+				if ( in_array($tag, $tag_names)){
+					$html .= get_the_title($voice);
+				}
+				return $html;
+				# code...
+			}
+		} else {
+			$voices = "No {$tag}s have been contributed yet. Add your voice!";
+		}
+
+}
+
+function untextbook_tag_names($array){
+	$names = array();
+	foreach ($array as $key => $tag) {
+		# code...
+		array_push($names, $tag->name);
+	}
+	return $names;
+}
+
 //OPTIONS PAGE
 if( function_exists('acf_add_options_page') ) {
 	
