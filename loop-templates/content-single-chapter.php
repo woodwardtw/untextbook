@@ -32,31 +32,43 @@ defined( 'ABSPATH' ) || exit;
 		<?php echo untextbook_get_lessons($post->ID, get_the_permalink());?>
 		<?php //the_content(); ?>
 		<div class="row voices-row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<h2>Rants</h2>	
 				<?php echo untextbook_show_voices('rant');?>			
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<h2>Remixes</h2>
+				<?php echo untextbook_show_voices('Remix');?>			
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<h2>Recasts</h2>
+				<?php echo untextbook_show_voices('Recast');?>			
 			</div>
-			<div class="col-md-8 offset-md-2" id="add-rant">
+			<div class="col-md-4">
+				<h2>Reflection</h2>
+				<?php echo untextbook_show_voices('Reflection');?>			
+			</div>
+			<div class="col-md-10 offset-md-1" id="add-rant">
 				 <?php 
 				 	$type = 'Rant';
 				 	voices_form_creation($type);
 				 ?>
 			</div>
-			<div class="col-md-8 offset-md-2" id="add-reflection">
+			<div class="col-md-10 offset-md-1" id="add-reflection">
 				 <?php 
 				 	$type = 'Reflection';
 				 	voices_form_creation($type);
 				 ?>
 			</div>
-			<div class="col-md-8 offset-md-2" id="add-recast">
+			<div class="col-md-10 offset-md-1" id="add-recast">
 				 <?php 
 				 	$type = 'Recast';
+				 	voices_form_creation($type);
+				 ?>
+			</div>
+			<div class="col-md-10 offset-md-1" id="add-remix">
+				 <?php 
+				 	$type = 'Remix';
 				 	voices_form_creation($type);
 				 ?>
 			</div>

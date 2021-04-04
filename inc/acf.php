@@ -389,19 +389,21 @@ function untextbook_show_voices($tag){
 	if(get_field('associated_voices', $chapter_id)){
 			$voices = get_field('associated_voices', $chapter_id);
 			//var_dump($voices);
-			foreach ($voices as $key => $voice) {
+			foreach($voices as $key => $voice) {
 				$tags = get_the_tags($voice);
 				$tag_names = untextbook_tag_names($tags);
+				//var_dump(in_array($tag, $tag_names));
 				if ( in_array($tag, $tag_names)){
-					$html .= get_the_title($voice);
+					$title = get_the_title($voice);
+					$link = get_the_permalink($voice);
+					$html .= "<h3 class='voice-title'><a href='{$link}'>{$title}</a></h3>";
 				}
-				return $html;
-				# code...
 			}
-		} else {
-			$voices = "No {$tag}s have been contributed yet. Add your voice!";
+		} 
+	if(!get_field('associated_voices', $chapter_id) || $html == '') {
+			$html = "No {$tag}s have been contributed yet. Add your voice!";
 		}
-
+	return $html;
 }
 
 function untextbook_tag_names($array){
