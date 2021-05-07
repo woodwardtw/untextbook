@@ -17,6 +17,7 @@ body {
   word-break: break-all;
   /* Instead use this non-standard one: */
   word-break: break-word;
+  color: $black;
 }
 
 /*HOME*/
@@ -75,7 +76,7 @@ ol, ul {
 
 .module-content, .entry-content, .lesson-content {
 	font-size: 1.2em;
-	color: $primary;
+	color: $black;
 	font-weight: 400;
 }
 
@@ -94,7 +95,7 @@ ol, ul {
 }
 
 h1, h2, h3, h4, h5 h6 {
-	color: $primary;
+	color: $navy;
 	font-weight: 900;
 }
 
@@ -130,7 +131,6 @@ h1, h2, h3, h4, h5 h6 {
 	font-weight: 900;
 	border-bottom: 2px solid $grayline;
 	position: relative;
-	color: $primary;
 }
 
 .module-content {
@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5 h6 {
 }
 
 .authors-block {
-	color: $primary;
+	color: $subheading;
 	font-size: 1.2rem;
 	font-weight: 700;
 	margin-bottom: 40px;
