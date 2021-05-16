@@ -46,9 +46,9 @@ function untextbook_chapters(){
 function untextbook_authors(){
 	if(get_field('authors')){
 		$authors = get_field('authors');
-		$html = "<div class='authors-block'> Authored by ";		
+		$html = "<div class='authors-block'><h2> Authored by ";		
 		$html .= $authors;
-		 return $html . "</div>";
+		 return $html . "</h2></div>";
 	}
 	
 }

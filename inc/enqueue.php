@@ -47,3 +47,11 @@ function thinking_grid_enqueue_stuff() {
   } 
 }
 add_action( 'wp_enqueue_scripts', 'thinking_grid_enqueue_stuff' );
+
+
+function untextbook_add_google_fonts() {
+ 
+wp_enqueue_style( 'untextbook-google-fonts', 'https://fonts.googleapis.com/css2?family=Raleway:wght@500;800&family=Roboto&display=swap', false ); 
+}
+ 
+add_action( 'wp_enqueue_scripts', 'untextbook_add_google_fonts' );
