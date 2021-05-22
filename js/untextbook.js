@@ -29,18 +29,38 @@ function voiceButtons(){
 		let buttons = document.querySelectorAll('.btn-voice')
 		buttons.forEach((button) => {
 		  button.addEventListener('click', () => {
-		    //console.log(button.dataset.voice)
-		    voiceForms(button.dataset.voice)
+		    //console.log(button.dataset.tagid)
+		    voiceForms(button.dataset.tagid)
 		  });
 		});
 	}
 }
 
-function voiceForms(type){
-	let form = document.getElementById(type+'-form');
-	console.log(form)
-	form.classList.toggle('hide')
-	console.log('toggle')
-	 jQuery("#" + type + "-form #acf-_post_title").focus();
-
+function voiceForms(tagid){
+	let form = document.getElementById('voice-form');
+	//console.log(form)
+	//form.classList.toggle('hide')
+	 jQuery("#voice-form #acf-_post_title").focus();
+	let tag = document.querySelectorAll("input[value='"+tagid+"']")[0];
+	console.log(tag)
+	tag.checked = true;
 }
+
+
+// function getTagValues(){
+// 	//http://multisitetwo.local/untextbook/wp-json/wp/v2/tags?slug=rant,remix,recast,reflection
+// 	var getUrl = window.location;
+// 	var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+	
+// 	const tagData = baseUrl+'/wp-json/wp/v2/tags?slug=rant,remix,recast,reflection'
+// 	fetch(tagData).then(function(response) {
+// 	  const contentType = response.headers.get("content-type");
+// 	  if (contentType && contentType.indexOf("application/json") !== -1) {
+// 	    return response.json().then(function(json) {
+// 	      // now that you've got the data let's do something with it per item
+// 	      console.log(json)
+// 	    });
+// 	  } 
+// 	});
+// }
+

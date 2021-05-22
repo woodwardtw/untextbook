@@ -342,12 +342,12 @@ function book_get_login_status(){
 	return $status;
 }
 
-function voices_form_creation($type){
+function voices_form_creation(){//$type removed
 	$status = book_get_front_form_status();
 	//var_dump($status);
-	$lower = strtolower($type);
+	//$lower = strtolower($type);
 	$args = array(
-			'id' => 'new-'.$lower,
+			'id' => 'new-voice',
 			'fields' => array('type'),
 	        'post_id'       => 'new_post',
 	        'post_title'   => true,
@@ -356,7 +356,7 @@ function voices_form_creation($type){
 	            'post_type'     => 'voice',
 	            // 'tags_input' => array($type),
 	        ),
-	        'submit_value'  => 'Create a new ' . $lower,
+	        'submit_value'  => 'Add a new voice.',
 	);
 	if($status === 'live'){
 		$args['new_post']['post_status'] = 'publish';

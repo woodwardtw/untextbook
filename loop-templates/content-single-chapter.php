@@ -36,19 +36,23 @@ defined( 'ABSPATH' ) || exit;
 			 $types = ['Rant', 'Remix', 'Recast', 'Reflection'];
 			 foreach ($types as $index => $value) {
 			 	$lower = strtolower($value);
-			 	echo "<div class='col-md-3'><button data-voice='{$lower}' class='btn btn-primary btn-voice' id='add-{$lower}'>Add a {$lower}!</button></div>";
+			 	$tagId = getTagBySlug($lower);
+			 	echo "<div class='col-md-3'><button data-tagid='{$tagId}' class='btn btn-primary btn-voice' id='add-{$lower}'>Add a {$lower}!</button></div>";
 			 }
 			 foreach ($types as $index => $value) {
 			 	echo untextbook_show_voices($value);
 			 }
-			 foreach ($types as $index => $value) {
-			 	# code...
-			 	$lower = strtolower($value);
-			 	 echo "<div class='col-md-10 offset-md-1 form-block hide' id='{$lower}-form'>";
-				 voices_form_creation($value);
-				 echo '</div>';
-			 }
-			 ;?>			 
+			 // foreach ($types as $index => $value) {
+			 // 	# code...
+			 // 	$lower = strtolower($value);
+			 // 	 echo "<div class='col-md-10 offset-md-1 form-block hide' id='{$lower}-form'>";
+				//  voices_form_creation($value);
+				//  echo '</div>';
+			 // }
+			 ?>	
+			<div class='col-md-10 offset-md-1 form-block ' id='voice-form'>
+				<?php echo voices_form_creation();?>
+			</div>
 		</div>
 
 		<?php

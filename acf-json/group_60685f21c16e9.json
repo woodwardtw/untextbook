@@ -16,13 +16,13 @@
                 "id": ""
             },
             "taxonomy": "post_tag",
-            "field_type": "checkbox",
+            "field_type": "radio",
+            "allow_null": 0,
             "add_term": 1,
             "save_terms": 1,
             "load_terms": 1,
             "return_format": "id",
-            "multiple": 0,
-            "allow_null": 0
+            "multiple": 0
         }
     ],
     "location": [
@@ -42,5 +42,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1621618846
+    "modified": 1621684337
 }

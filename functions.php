@@ -72,3 +72,9 @@ function configure_tinymce($in) {
   }";
   return $in;
 }
+
+function getTagBySlug($slug){
+	$tag = get_term_by('slug', $slug,'post_tag');
+	$tag_id =  $tag->term_id; 
+	return $tag_id;
+}
