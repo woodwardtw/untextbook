@@ -9,6 +9,7 @@ window.addEventListener('load', function(event) {
 	      wrapper.appendChild(video); // move video into wrapper
 	});
 	showHomeModal();
+	voiceButtons();
 });
 
 
@@ -23,3 +24,23 @@ function showHomeModal(){
 	}
 }
 
+function voiceButtons(){
+	if(document.querySelectorAll('.btn-voice')){
+		let buttons = document.querySelectorAll('.btn-voice')
+		buttons.forEach((button) => {
+		  button.addEventListener('click', () => {
+		    //console.log(button.dataset.voice)
+		    voiceForms(button.dataset.voice)
+		  });
+		});
+	}
+}
+
+function voiceForms(type){
+	let form = document.getElementById(type+'-form');
+	console.log(form)
+	form.classList.toggle('hide')
+	console.log('toggle')
+	 jQuery("#" + type + "-form #acf-_post_title").focus();
+
+}

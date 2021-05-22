@@ -50,7 +50,7 @@ h5{
 
 /*main nav*/
 #main-nav {
-	height: 150px;
+	min-height: 150px;
 	background-image: url('../imgs/main_banners/colourblocks_option3@2x.png');
 	background-position: center center;
 	background-size: cover;
@@ -61,6 +61,14 @@ h5{
 	font-family: 'Raleway', sans-serif;
 	font-size: 28pt;
 	font-weight: 900;
+}
+
+#main-menu{
+	background-color: $primary;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: #fff;
 }
 
 /*HOME*/
@@ -160,6 +168,20 @@ ol, ul {
 	padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+}
+
+/*Chapter*/
+.voices-row h2 {
+	display: inline-block;	
+}
+
+.btn-voice {
+	width: 100%;
+	margin: 10px;
+}
+
+.hide {
+	display: none;
 }
 
 /*MODULE*/
@@ -424,7 +446,7 @@ blockquote p {
     padding-bottom:56.25%;
     position:relative;
     height:0;
-    box-shadow: 8px 8px 0px $yellow;
+    box-shadow: 8px 8px 0px $red;
 
 }
 .video-responsive iframe{
@@ -635,6 +657,9 @@ textarea {
 
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 576px) { 
+	#main-menu{
+		padding: 20px;
+	}
 	.navbar-brand img {
 		max-width: 70%;
 	}
@@ -652,9 +677,7 @@ textarea {
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-	#main-nav{
-		height: 60px;
-	}
+	
 
 	#navbarNavDropdown {
 	    position: absolute;

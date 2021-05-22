@@ -32,46 +32,23 @@ defined( 'ABSPATH' ) || exit;
 		<?php echo untextbook_get_lessons($post->ID, get_the_permalink());?>
 		<?php //the_content(); ?>
 		<div class="row voices-row">
-			<div class="col-md-4">
-				<h2>Rants</h2>	
-				<?php echo untextbook_show_voices('rant');?>			
-			</div>
-			<div class="col-md-4">
-				<h2>Remixes</h2>
-				<?php echo untextbook_show_voices('Remix');?>			
-			</div>
-			<div class="col-md-4">
-				<h2>Recasts</h2>
-				<?php echo untextbook_show_voices('Recast');?>			
-			</div>
-			<div class="col-md-4">
-				<h2>Reflection</h2>
-				<?php echo untextbook_show_voices('Reflection');?>			
-			</div>
-			<div class="col-md-10 offset-md-1" id="add-rant">
-				 <?php 
-				 	$type = 'Rant';
-				 	voices_form_creation($type);
-				 ?>
-			</div>
-			<div class="col-md-10 offset-md-1" id="add-reflection">
-				 <?php 
-				 	$type = 'Reflection';
-				 	voices_form_creation($type);
-				 ?>
-			</div>
-			<div class="col-md-10 offset-md-1" id="add-recast">
-				 <?php 
-				 	$type = 'Recast';
-				 	voices_form_creation($type);
-				 ?>
-			</div>
-			<div class="col-md-10 offset-md-1" id="add-remix">
-				 <?php 
-				 	$type = 'Remix';
-				 	voices_form_creation($type);
-				 ?>
-			</div>
+			 <?php 
+			 $types = ['Rant', 'Remix', 'Recast', 'Reflection'];
+			 foreach ($types as $index => $value) {
+			 	$lower = strtolower($value);
+			 	echo "<div class='col-md-3'><button data-voice='{$lower}' class='btn btn-primary btn-voice' id='add-{$lower}'>Add a {$lower}!</button></div>";
+			 }
+			 foreach ($types as $index => $value) {
+			 	echo untextbook_show_voices($value);
+			 }
+			 foreach ($types as $index => $value) {
+			 	# code...
+			 	$lower = strtolower($value);
+			 	 echo "<div class='col-md-10 offset-md-1 form-block hide' id='{$lower}-form'>";
+				 voices_form_creation($value);
+				 echo '</div>';
+			 }
+			 ;?>			 
 		</div>
 
 		<?php

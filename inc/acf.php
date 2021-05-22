@@ -345,17 +345,18 @@ function book_get_login_status(){
 function voices_form_creation($type){
 	$status = book_get_front_form_status();
 	//var_dump($status);
+	$lower = strtolower($type);
 	$args = array(
-			'id' => 'new-resource',
-			'fields' => array(' '),
+			'id' => 'new-'.$lower,
+			'fields' => array('type'),
 	        'post_id'       => 'new_post',
 	        'post_title'   => true,
 			'post_content'	=> true,
 	        'new_post'      => array(
 	            'post_type'     => 'voice',
-	            'tags_input' => array($type),
+	            // 'tags_input' => array($type),
 	        ),
-	        'submit_value'  => 'Create new ' . $type,
+	        'submit_value'  => 'Create a new ' . $lower,
 	);
 	if($status === 'live'){
 		$args['new_post']['post_status'] = 'publish';
@@ -384,11 +385,13 @@ function untextbook_acf_form_submission_additions($post_id){
 add_action('acf/save_post', 'untextbook_acf_form_submission_additions', 20, 1912);
 
 function untextbook_show_voices($tag){
+	$header = "<div class='col-md-12'><h2>{$tag}</h2>";
 	$html = '';
+	$chapter_id = get_the_id();
+	$lower = strtolower($tag);
 	$chapter_id = get_the_id();
 	if(get_field('associated_voices', $chapter_id)){
 			$voices = get_field('associated_voices', $chapter_id);
-			//var_dump($voices);
 			foreach($voices as $key => $voice) {
 				$tags = get_the_tags($voice);
 				$tag_names = untextbook_tag_names($tags);
@@ -396,14 +399,16 @@ function untextbook_show_voices($tag){
 				if ( in_array($tag, $tag_names)){
 					$title = get_the_title($voice);
 					$link = get_the_permalink($voice);
-					$html .= "<h3 class='voice-title'><a href='{$link}'>{$title}</a></h3>";
+					$excerpt = wp_strip_all_tags( get_the_excerpt($voice), true );
+					$html .= "<h3 class='voice-title'><a href='{$link}'>{$title}</a></h3><p>{$excerpt}</p>";
 				}
 			}
 		} 
 	if(!get_field('associated_voices', $chapter_id) || $html == '') {
-			$html = "No {$tag}s have been contributed yet. Add your voice!";
+		    $lower = strtolower($tag);
+			$html = "<div>We want your voice. Consider submitting a {$tag}.</div>";
 		}
-	return $html;
+	return $header . $html . '</div>';
 }
 
 function untextbook_tag_names($array){

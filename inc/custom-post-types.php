@@ -76,6 +76,7 @@ function create_chapter_cpt() {
 add_action( 'init', 'create_chapter_cpt', 0 );
 
 
+
 //lesson custom post type
 
 // Register Custom Post Type lesson
@@ -184,7 +185,7 @@ function create_voice_cpt() {
     'description' => __( '', 'textdomain' ),
     'labels' => $labels,
     'menu_icon' => '',
-    'supports' => array('title', 'editor', 'revisions', 'author', 'trackbacks', 'custom-fields', 'thumbnail',),
+    'supports' => array('title', 'editor', 'revisions', 'author', 'trackbacks', 'custom-fields', 'thumbnail', 'excerpt'),
     'taxonomies' => array('category', 'post_tag'),
     'public' => true,
     'show_ui' => true,
