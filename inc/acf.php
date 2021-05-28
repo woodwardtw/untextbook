@@ -424,29 +424,38 @@ function voices_descriptions(){
 }
 
 function voice_buttons(){
-	 $types = [];
-	 $perspective_1 = get_field('perspective_1','option');
-	 $perspective_2 = get_field('perspective_2','option');
-	 $perspective_3 = get_field('perspective_3','option');
-	 $perspective_4 = get_field('perspective_4','option');
+	$login_required = get_field('logged_in','options');
+	if($login_required == 'closed' && is_user_logged_in() || $login_required == 'open'){//look to see if required login and is logged in
+		 $types = [];
+		 $perspective_1 = get_field('perspective_1','option');
+		 $perspective_2 = get_field('perspective_2','option');
+		 $perspective_3 = get_field('perspective_3','option');
+		 $perspective_4 = get_field('perspective_4','option');
 
-	 if ($perspective_1 != ''){
-	 	array_push($types, $perspective_1);
-	 }
-	 if ($perspective_2 != ''){
-	 	array_push($types, $perspective_2);
-	 }
-	 if ($perspective_3 != ''){
-	 	array_push($types, $perspective_3);
-	 }
-	 if ($perspective_4 != ''){
-	 	array_push($types, $perspective_4);
-	 }	
-	 foreach ($types as $index => $value) {
-	 	$lower = strtolower($value);
-	 	$tagId = getTagBySlug($lower);
-	 	echo "<div class='col-md-3'><button data-tagid='{$tagId}' data-descid='{$index}' class='btn btn-primary btn-voice' id='add-{$lower}'><span class='add'>+</span> {$lower}</button></div>";
-	 }
+		 if ($perspective_1 != ''){
+		 	array_push($types, $perspective_1);
+		 }
+		 if ($perspective_2 != ''){
+		 	array_push($types, $perspective_2);
+		 }
+		 if ($perspective_3 != ''){
+		 	array_push($types, $perspective_3);
+		 }
+		 if ($perspective_4 != ''){
+		 	array_push($types, $perspective_4);
+		 }	
+		 foreach ($types as $index => $value) {
+		 	$lower = strtolower($value);
+		 	$tagId = getTagBySlug($lower);
+		 	echo "<div class='col-md-3'><button data-tagid='{$tagId}' data-descid='{$index}' class='btn btn-primary btn-voice' id='add-{$lower}'><span class='add'>+</span> {$lower}</button></div>";
+		 }
+	} else {
+		$current_url = home_url( add_query_arg( [], $GLOBALS['wp']->request ) );
+		echo "<a href='" . esc_url( wp_login_url( $current_url ) ) . "'>Login to submit content.</a>";
+
+	}
+
+	 
 }
 
 //FRONT END FORM RELATIONSHIP BUILDER
