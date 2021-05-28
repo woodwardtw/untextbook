@@ -470,14 +470,15 @@ function untextbook_show_voices($tag, $index){
 
 
 function untextbook_tag_names($array){
-	$names = array();
-	if($names){
+	if($array){
+		$names = array();
 		foreach ($array as $key => $tag) {
-		# code...
-		array_push($names, $tag->name);
+			# code...
+			array_push($names, $tag->name);
 		}
 		return $names;
-	} else {
+	}
+	else {
 		return array();
 	}
 	
