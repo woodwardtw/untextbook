@@ -128,7 +128,10 @@ function untextbook_glossary(){
 	        $definition = get_sub_field('definition');
 	        $link = get_sub_field('link');
 	        // Do something...
-	        $html .= "<li><a href='{$link}'>{$term}</a> {$definition}</li>";
+	        if($link){
+	        	$term = "<a href='{$link}'>{$term}</a>";
+	        }
+	        $html .= "<li>{$term}: {$definition}</li>";
 	    // End loop.
 	    endwhile;
 	    return $html . "</ul></div></div>";
