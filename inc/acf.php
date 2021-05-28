@@ -64,7 +64,7 @@ function untextbook_chapters_shortcode(){
 		// No value.
 		else :
 		    // Do something...
-		    return 'No chapters are showing. Is your homepage set to the home page template? Do you have chapters there?'
+		    return 'No chapters are showing. Is your homepage set to the home page template? Do you have chapters there?';
 		endif;
 }
 add_shortcode( 'chapterlist', 'untextbook_chapters_shortcode' );
