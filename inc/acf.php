@@ -40,6 +40,35 @@ function untextbook_chapters(){
 }
 
 
+//**shortcode**//
+function untextbook_chapters_shortcode(){
+	$home_id = get_option('page_on_front');
+	$html = '';
+	if( have_rows('chapters', $home_id) ):
+
+	    // Loop through rows.
+	    while( have_rows('chapters', $home_id) ) : the_row();
+
+	        // Load sub field value.
+	        $chapter = get_sub_field('chapter', $home_id);
+	        // Do something...
+	        $title = $chapter->post_title;
+	        $id = $chapter->ID;
+	        $url = get_permalink($id);
+	        $row = get_row_index();
+	       
+	        $html .= "<li><a href='{$url}'>{$title}</a></li>";
+	    // End loop.
+	    endwhile;
+	    return "<ul class='chapter-shortcode'>{$html}</ul>";
+		// No value.
+		else :
+		    // Do something...
+		    return 'No chapters are showing. Is your homepage set to the home page template? Do you have chapters there?'
+		endif;
+}
+add_shortcode( 'chapterlist', 'untextbook_chapters_shortcode' );
+
 
 //***************MODULES********************//
 
