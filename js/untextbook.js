@@ -10,6 +10,10 @@ window.addEventListener('load', function(event) {
 	});
 	showHomeModal();
 	voiceButtons();
+	hideDirections();
+	jQuery(function () {
+	  jQuery('[data-toggle="tooltip"]').tooltip()
+	})
 });
 
 
@@ -30,22 +34,45 @@ function voiceButtons(){
 		buttons.forEach((button) => {
 		  button.addEventListener('click', () => {
 		    //console.log(button.dataset.tagid)
-		    voiceForms(button.dataset.tagid)
+		    voiceForms(button.dataset.tagid, button.dataset.descid)
 		  });
 		});
 	}
 }
 
-function voiceForms(tagid){
+function voiceForms(tagid, descid){
+	descid = parseInt(descid)+1;
 	let form = document.getElementById('voice-form');
+	let desc = document.getElementById('vd-'+descid);
+	console.log(descid)
 	//console.log(form)
-	//form.classList.toggle('hide')
-	 jQuery("#voice-form #acf-_post_title").focus();
-	let tag = document.querySelectorAll("input[value='"+tagid+"']")[0];
-	console.log(tag)
+	form.classList.toggle('hide');//hide/show form field
+	desc.classList.toggle('hide');//hide/show lens description
+	jQuery('html, body').animate({ scrollTop: jQuery("#acf-_post_title").offset().top-120 }, 500);
+	jQuery("#voice-form #acf-_post_title").focus();//select form field for input
+	let tag = document.querySelectorAll("input[value='"+tagid+"']")[0];//set tag for voice type
+	
 	tag.checked = true;
 }
 
+
+function hideDirections(){
+	if(document.querySelectorAll('.hide-prompt')){
+		let buttons = document.querySelectorAll('.hide-prompt')
+		buttons.forEach((button) => {
+		  button.addEventListener('click', () => {
+		    button.parentNode.classList.toggle('small');
+		    const current = button.innerHTML;
+		    console.log(current)
+		    if (current == 'Hide prompt') {
+		    	button.innerHTML = '+'
+		    } else {
+		    	button.innerHTML = 'Hide prompt'
+		    }
+		  });
+		});
+	}
+}
 
 // function getTagValues(){
 // 	//http://multisitetwo.local/untextbook/wp-json/wp/v2/tags?slug=rant,remix,recast,reflection

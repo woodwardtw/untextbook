@@ -22,16 +22,17 @@ function untextbook_chapters(){
 	        $title = $chapter->post_title;
 	        $id = $chapter->ID;
 	        $url = get_permalink($id);
+	        $row = get_row_index();
 	        $summary = get_field('summary', $id);
 	        if(get_the_post_thumbnail($id)){
-	        	$thumb = get_the_post_thumbnail($id);
+	        	$thumb = get_the_post_thumbnail_url($id, 'medium');
 	        } else {
 	        	$thumb = "";
 	        }
-	        $html .= "<div class='col-md-4'><a href='{$url}'><div class='chapter-list'><h2>{$title}</h2>{$thumb}</a><div class='chapter-summary'>{$summary}</div></div></div>";
+	        $html .= "<div class='row chapter-row'><div class='col-md-3'><div class='chapter-img' style='background-image:url({$thumb})'>{$row}</div></div><div class='col-md-9'><a href='{$url}'><div class='chapter-list'><h2>{$title}</h2><div class='chapter-summary'>{$summary}</div></a></div></div></div>";
 	    // End loop.
 	    endwhile;
-	    return "<div class='row chapter-menu'>{$html}</div>";
+	    return "<div class='chapter-menu'>{$html}</div>";
 		// No value.
 		else :
 		    // Do something...
@@ -342,13 +343,14 @@ function book_get_login_status(){
 	return $status;
 }
 
+
 function voices_form_creation(){//$type removed
 	$status = book_get_front_form_status();
 	//var_dump($status);
 	//$lower = strtolower($type);
 	$args = array(
 			'id' => 'new-voice',
-			'fields' => array('type'),
+			'fields' => array('type','your_name'),
 	        'post_id'       => 'new_post',
 	        'post_title'   => true,
 			'post_content'	=> true,
@@ -356,7 +358,7 @@ function voices_form_creation(){//$type removed
 	            'post_type'     => 'voice',
 	            // 'tags_input' => array($type),
 	        ),
-	        'submit_value'  => 'Add a new voice.',
+	        'submit_value'  => 'Add your voice.',
 	);
 	if($status === 'live'){
 		$args['new_post']['post_status'] = 'publish';
@@ -364,6 +366,55 @@ function voices_form_creation(){//$type removed
 		$args['new_post']['post_status'] = 'draft';
 	}
 	return acf_form($args);
+}
+
+function voices_descriptions(){
+	 $perspective_1 = get_field('perspective_1','option');
+	 $perspective_2 = get_field('perspective_2','option');
+	 $perspective_3 = get_field('perspective_3','option');
+	 $perspective_4 = get_field('perspective_4','option');
+	 $perspective_descrip_1 = get_field('perspective_1_description','option');
+	 $perspective_descrip_2 = get_field('perspective_2_description','option');
+	 $perspective_descrip_3 = get_field('perspective_3_description','option');
+	 $perspective_descrip_4 = get_field('perspective_4_description','option');
+	 if ($perspective_descrip_1 != ''){
+	 	echo "<div class='voice-description hide' id='vd-1'><h2>{$perspective_1}</h2>{$perspective_descrip_1}<button class='hide-prompt btn btn-primary' data-toggle='tooltip' data-placement='top' title='Hide/Show Prompt'>Hide prompt</button></div>";
+	 }
+	 if ($perspective_descrip_2 != ''){
+	 	echo "<div class='voice-description hide' id='vd-2'><h2>{$perspective_2}</h2>{$perspective_descrip_2}<button class='hide-prompt btn btn-primary' data-toggle='tooltip' data-placement='top' title='Hide/Show Prompt'>Hide prompt</button></div>";
+	 }
+	 if ($perspective_descrip_3 != ''){
+	 	echo "<div class='voice-description hide' id='vd-3'><h2>{$perspective_3}</h2>{$perspective_descrip_3}<button class='hide-prompt btn btn-primary' data-toggle='tooltip' data-placement='top' title='Hide/Show Prompt'>Hide prompt</button></div>";
+	 }
+	 if ($perspective_descrip_4 != ''){
+	 	echo "<div class='voice-description hide' id='vd-4'><h2>{$perspective_4}</h2>{$perspective_descrip_4}<button class='hide-prompt btn btn-primary' data-toggle='tooltip' data-placement='top' title='Hide/Show Prompt'>Hide prompt</button></div>";
+	 }
+}
+
+function voice_buttons(){
+	 $types = [];
+	 $perspective_1 = get_field('perspective_1','option');
+	 $perspective_2 = get_field('perspective_2','option');
+	 $perspective_3 = get_field('perspective_3','option');
+	 $perspective_4 = get_field('perspective_4','option');
+
+	 if ($perspective_1 != ''){
+	 	array_push($types, $perspective_1);
+	 }
+	 if ($perspective_2 != ''){
+	 	array_push($types, $perspective_2);
+	 }
+	 if ($perspective_3 != ''){
+	 	array_push($types, $perspective_3);
+	 }
+	 if ($perspective_4 != ''){
+	 	array_push($types, $perspective_4);
+	 }	
+	 foreach ($types as $index => $value) {
+	 	$lower = strtolower($value);
+	 	$tagId = getTagBySlug($lower);
+	 	echo "<div class='col-md-3'><button data-tagid='{$tagId}' data-descid='{$index}' class='btn btn-primary btn-voice' id='add-{$lower}'><span class='add'>+</span> {$lower}</button></div>";
+	 }
 }
 
 //FRONT END FORM RELATIONSHIP BUILDER
@@ -384,23 +435,28 @@ function untextbook_acf_form_submission_additions($post_id){
 
 add_action('acf/save_post', 'untextbook_acf_form_submission_additions', 20, 1912);
 
-function untextbook_show_voices($tag){
-	$header = "<div class='col-md-12'><h2>{$tag}</h2>";
+function untextbook_show_voices($tag, $index){
 	$html = '';
 	$chapter_id = get_the_id();
 	$lower = strtolower($tag);
 	$chapter_id = get_the_id();
+	$count = 0;
 	if(get_field('associated_voices', $chapter_id)){
 			$voices = get_field('associated_voices', $chapter_id);
 			foreach($voices as $key => $voice) {
+				
 				$tags = get_the_tags($voice);
 				$tag_names = untextbook_tag_names($tags);
+				// var_dump($tag_names);
+				// var_dump($tag);
 				//var_dump(in_array($tag, $tag_names));
-				if ( in_array($tag, $tag_names)){
+				if ( in_array($lower, $tag_names)){
+
 					$title = get_the_title($voice);
 					$link = get_the_permalink($voice);
 					$excerpt = wp_strip_all_tags( get_the_excerpt($voice), true );
 					$html .= "<h3 class='voice-title'><a href='{$link}'>{$title}</a></h3><p>{$excerpt}</p>";
+					$count = $count+1;
 				}
 			}
 		} 
@@ -408,16 +464,23 @@ function untextbook_show_voices($tag){
 		    $lower = strtolower($tag);
 			$html = "<div>We want your voice. Consider submitting a {$tag}.</div>";
 		}
-	return $header . $html . '</div>';
+	$header = "<div class='card'><div class='card-header' id='heading-{$index}'><h2><button class='voice-button' type='button' data-toggle='collapse' data-target='#collapse-{$index}' aria-expanded='false' aria-controls='collapse-{$index}'>{$tag} <span class='voice-count'>{$count}</span></button></h2></div><div id='collapse-{$index}' class='collapse' aria-labelledby='heading-{$index}' data-parent='#voices-accordion'><div class='card-body'>";
+	return $header . $html . '</div></div></div>';
 }
+
 
 function untextbook_tag_names($array){
 	$names = array();
-	foreach ($array as $key => $tag) {
+	if($names){
+		foreach ($array as $key => $tag) {
 		# code...
 		array_push($names, $tag->name);
+		}
+		return $names;
+	} else {
+		return array();
 	}
-	return $names;
+	
 }
 
 //OPTIONS PAGE

@@ -74,7 +74,14 @@ function configure_tinymce($in) {
 }
 
 function getTagBySlug($slug){
-	$tag = get_term_by('slug', $slug,'post_tag');
-	$tag_id =  $tag->term_id; 
+	if(get_term_by('slug', $slug,'post_tag')){
+		$tag = get_term_by('slug', $slug,'post_tag');
+		$tag_id =  $tag->term_id; 
+	} else {
+		wp_insert_term( $slug, 'post_tag', array());
+		$tag = get_term_by('slug', $slug,'post_tag');
+		$tag_id =  $tag->term_id; 
+	}
+	
 	return $tag_id;
 }

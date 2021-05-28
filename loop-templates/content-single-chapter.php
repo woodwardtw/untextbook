@@ -13,12 +13,12 @@ defined( 'ABSPATH' ) || exit;
 
 	<header class="module-header">
 
-		<?php the_title( '<h1 class="module-title">', '</h1>' ); ?>
+		<?php the_title( '<div class="mod-icon"></div><h1 class="module-title">', '</h1>' ); ?>
 		
 
 	</header><!-- .entry-header -->
 
-	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+	<img src="<?php echo get_the_post_thumbnail_url( $post->ID, 'large' ); ?>" class="chapter-img" alt="Chapter image for <?php the_title();?>.">
 
 	<div class="module-content">
 		<?php echo untextbook_authors();?>
@@ -32,28 +32,38 @@ defined( 'ABSPATH' ) || exit;
 		<?php echo untextbook_get_lessons($post->ID, get_the_permalink());?>
 		<?php //the_content(); ?>
 		<div class="row voices-row">
-			 <?php 
-			 $types = ['Rant', 'Remix', 'Recast', 'Reflection'];
-			 foreach ($types as $index => $value) {
-			 	$lower = strtolower($value);
-			 	$tagId = getTagBySlug($lower);
-			 	echo "<div class='col-md-3'><button data-tagid='{$tagId}' class='btn btn-primary btn-voice' id='add-{$lower}'>Add a {$lower}!</button></div>";
-			 }
-			 foreach ($types as $index => $value) {
-			 	echo untextbook_show_voices($value);
-			 }
-			 // foreach ($types as $index => $value) {
-			 // 	# code...
-			 // 	$lower = strtolower($value);
-			 // 	 echo "<div class='col-md-10 offset-md-1 form-block hide' id='{$lower}-form'>";
-				//  voices_form_creation($value);
-				//  echo '</div>';
-			 // }
-			 ?>	
-			<div class='col-md-10 offset-md-1 form-block ' id='voice-form'>
-				<?php echo voices_form_creation();?>
+			<div class="accordion" id="voices-accordion">
+				 <?php
+				 $types = [];
+				 $perspective_1 = get_field('perspective_1','option');
+				 $perspective_2 = get_field('perspective_2','option');
+				 $perspective_3 = get_field('perspective_3','option');
+				 $perspective_4 = get_field('perspective_4','option');
+
+				 if ($perspective_1 != ''){
+				 	array_push($types, $perspective_1);
+				 }
+				 if ($perspective_2 != ''){
+				 	array_push($types, $perspective_2);
+				 }
+				 if ($perspective_3 != ''){
+				 	array_push($types, $perspective_3);
+				 }
+				 if ($perspective_4 != ''){
+				 	array_push($types, $perspective_4);
+				 }			 
+				 foreach ($types as $index => $value) {
+				 	echo untextbook_show_voices($value, $index);//show voice content
+				 }				
+				 ?>	
+			</div>
+			<div class='col-md-12 form-block hide' id='voice-form'>
+				<?php voices_descriptions();//show voices descriptions?>
+				<?php echo voices_form_creation();//voice creation form?>
 			</div>
 		</div>
+
+
 
 		<?php
 		wp_link_pages(
@@ -67,6 +77,9 @@ defined( 'ABSPATH' ) || exit;
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
+		<div class="voice-buttons row">
+			<?php echo voice_buttons();//Buttons to trigger voice form ?>
+		</div>
 
 		<?php understrap_entry_footer(); ?>
 

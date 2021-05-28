@@ -49,6 +49,175 @@
             "layout": "vertical",
             "return_format": "value",
             "save_other_choice": 0
+        },
+        {
+            "key": "field_60ad4f3a6d223",
+            "label": "Perspectives",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "You can choose up to four perspective terms and details. These items appear with each chapter. Consider them lenses to help others create additional content.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_60ad4f895dda6",
+            "label": "Perspective 1",
+            "name": "perspective_1",
+            "type": "text",
+            "instructions": "Keep this concise. It will appear on the buttons. \r\n\r\nGive additional details in the description.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60ad4fd8f9efd",
+            "label": "Perspective 1 Description",
+            "name": "perspective_1_description",
+            "type": "wysiwyg",
+            "instructions": "Give the context for this activity. Feel free to use hyperlinks or other elements to help give context.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_60ad4fc28ebaa",
+            "label": "Perspective 2",
+            "name": "perspective_2",
+            "type": "text",
+            "instructions": "Keep this concise. It will appear on the buttons. \r\n\r\nGive additional details in the description.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60ad5020f9efe",
+            "label": "Perspective 2 Description",
+            "name": "perspective_2_description",
+            "type": "wysiwyg",
+            "instructions": "Give the context for this activity. Feel free to use hyperlinks or other elements to help give context.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_60ad4fc98ebab",
+            "label": "Perspective 3",
+            "name": "perspective_3",
+            "type": "text",
+            "instructions": "Keep this concise. It will appear on the buttons. \r\n\r\nGive additional details in the description.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60ad5036f9eff",
+            "label": "Perspective 3 Description",
+            "name": "perspective_3_description",
+            "type": "wysiwyg",
+            "instructions": "Give the context for this activity. Feel free to use hyperlinks or other elements to help give context.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_60ad4fce8ebac",
+            "label": "Perspective 4",
+            "name": "perspective_4",
+            "type": "text",
+            "instructions": "Keep this concise. It will appear on the buttons. \r\n\r\nGive additional details in the description.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_60ad5049f9f00",
+            "label": "Perspective 4 Description",
+            "name": "perspective_4_description",
+            "type": "wysiwyg",
+            "instructions": "Give the context for this activity. Feel free to use hyperlinks or other elements to help give context.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         }
     ],
     "location": [
@@ -68,5 +237,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1617452360
+    "modified": 1622118390
 }

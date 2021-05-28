@@ -23,16 +23,16 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php the_content(); ?>
 		<!--CHAPTER LIST-->
-		<h2>Choose a Chapter</h2>
+		<h2 class='home-chapter'>Choose a Chapter</h2>
 		<?php echo untextbook_chapters();?>
 		<!--CONTRIBUTE OPTIONS-->
-		<h2>Contribute</h2>
+		<!-- <h2>Contribute</h2>
 		<div class="row">
 			<div class="col-md-3"><h3>Rant</h3></div>
 			<div class="col-md-3"><h3>Remix</h3></div>
 			<div class="col-md-3"><h3>Recast</h3></div>
 			<div class="col-md-3"><h3>Reflect</h3></div>
-		</div>
+		</div> -->
 
 		<?php
 		wp_link_pages(
