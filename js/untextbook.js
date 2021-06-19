@@ -44,14 +44,20 @@ function voiceForms(tagid, descid){
 	descid = parseInt(descid)+1;
 	let form = document.getElementById('voice-form');
 	let desc = document.getElementById('vd-'+descid);
-	console.log(descid)
-	//console.log(form)
-	form.classList.toggle('hide');//hide/show form field
-	desc.classList.toggle('hide');//hide/show lens description
-	jQuery('html, body').animate({ scrollTop: jQuery("#acf-_post_title").offset().top-120 }, 500);
+	console.log(desc)
+	console.log(form)
+	let isHiddenForm = form.classList.contains('hide');
+	let isDescriptionHidden = desc.classList.contains('hide');
+	if(isDescriptionHidden && isHiddenForm){
+		form.classList.toggle('hide');//hide/show form field
+		desc.classList.toggle('hide');//hide/show lens description
+		jQuery('html, body').animate({ scrollTop: jQuery("#acf-_post_title").offset().top-120 }, 500);
+	} else {
+		jQuery(".voice-description").addClass("hide")
+		desc.classList.toggle('hide')
+	}	
 	jQuery("#voice-form #acf-_post_title").focus();//select form field for input
 	let tag = document.querySelectorAll("input[value='"+tagid+"']")[0];//set tag for voice type
-	
 	tag.checked = true;
 }
 
