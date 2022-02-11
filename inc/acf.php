@@ -525,6 +525,14 @@ function untextbook_tag_names($array){
 	
 }
 
+
+function untextbook_author(){
+	if(get_the_field('your_name')){
+		$name = get_the_field('your_name');
+		return "<div class='voice-author'>{$name}</div>";
+	}
+}
+
 //OPTIONS PAGE
 if( function_exists('acf_add_options_page') ) {
 	

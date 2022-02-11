@@ -28,6 +28,7 @@ defined( 'ABSPATH' ) || exit;
 	<div class="entry-content">
 
 		<?php the_content(); ?>
+		<?php echo untextbook_author();?>
 
 		<?php
 		wp_link_pages(
