@@ -527,9 +527,9 @@ function untextbook_tag_names($array){
 
 
 function untextbook_author(){
-	if(get_the_field('your_name')){
-		$name = get_the_field('your_name');
-		return "<div class='voice-author'>{$name}</div>";
+	if(get_field('your_name')){
+		$name = get_field('your_name');
+		return "<div class='voice-author'>By: {$name}</div>";
 	}
 }
 
