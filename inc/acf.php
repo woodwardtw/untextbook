@@ -485,19 +485,21 @@ function untextbook_show_voices($tag, $index){
 	if(get_field('associated_voices', $chapter_id)){
 			$voices = get_field('associated_voices', $chapter_id);
 			foreach($voices as $key => $voice) {
-				
-				$tags = get_the_tags($voice);
-				$tag_names = untextbook_tag_names($tags);
-				// var_dump($tag_names);
-				// var_dump($tag);
-				//var_dump(in_array($tag, $tag_names));
-				if ( in_array($lower, $tag_names)){
+				if(get_post_status($voice) == 'publish'){
+									$tags = get_the_tags($voice);
+									$tag_names = untextbook_tag_names($tags);
+									// var_dump($tag_names);
+									// var_dump($tag);
+									//var_dump(in_array($tag, $tag_names));
+									if ( in_array($lower, $tag_names)){
 
-					$title = get_the_title($voice);
-					$link = get_the_permalink($voice);
-					$excerpt = wp_strip_all_tags( get_the_excerpt($voice), true );
-					$html .= "<h3 class='voice-title'><a href='{$link}'>{$title}</a></h3><p>{$excerpt}</p>";
-					$count = $count+1;
+										$title = get_the_title($voice);
+										$link = get_the_permalink($voice);
+										$excerpt = wp_strip_all_tags( get_the_excerpt($voice), true );
+										$html .= "<h3 class='voice-title'><a href='{$link}'>{$title}</a></h3><p>{$excerpt}</p>";
+										$count = $count+1;
+					}
+
 				}
 			}
 		} 
