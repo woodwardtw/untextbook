@@ -185,7 +185,7 @@ function create_voice_cpt() {
     'description' => __( '', 'textdomain' ),
     'labels' => $labels,
     'menu_icon' => '',
-    'supports' => array('title', 'editor', 'revisions', 'author', 'trackbacks', 'custom-fields', 'thumbnail', 'excerpt'),
+    'supports' => array('title', 'editor', 'revisions', 'author', 'trackbacks', 'custom-fields', 'thumbnail', 'excerpt', 'comments'),
     'taxonomies' => array('category', 'post_tag'),
     'public' => true,
     'show_ui' => true,
