@@ -17647,6 +17647,16 @@ ol, ul {
   color: #000;
 }
 
+#stop-edit {
+  background-color: #c20e1a;
+  display: block;
+  float: right;
+  padding: 3px 10px;
+  color: #000;
+  border-radius: 3px;
+  margin-top: -40px;
+}
+
 .side-img {
   position: absolute;
   left: -30px;

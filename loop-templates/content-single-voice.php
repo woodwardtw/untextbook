@@ -26,24 +26,27 @@ defined( 'ABSPATH' ) || exit;
 	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 
 	<div class="entry-content">
+		
 		<?php 
-			if (isset($_GET['uid']) || current_user_can('manage_options')) {
-				$base_url = get_permalink();
-				$url_unique_id = $_GET['uid'];
-				$unique_id = get_field('editing_id');
-				if($url_unique_id == $unique_id || current_user_can('manage_options')){
+		$base_url = get_permalink();
+		$unique_id = get_field('editing_id');
+			if (isset($_GET['uid'])) {				
+				$url_unique_id = $_GET['uid'];				
+				if($url_unique_id == $unique_id){
 					echo "<div class='edit-directions'>
 						<p>The URL for this page will enable you to come back and make edits. Copy it and save it somewhere safe. Do NOT share it!</p>
-						<div class='edit-url'>{$base_url}?/uid={$unique_id}</div>
+						<div class='edit-url'>{$base_url}?uid={$unique_id}</div>
 						<p>You can edit any of the fields below and update them by making your changes and clicking the <strong>Submit Update</strong> button.
 						<p>When you're done editing, leave the page or click the <strong>Done Editing</strong> button.
 						
 					</div>";
 				}
 			}
+			if (current_user_can('manage_options') && !isset($_GET['uid'])){
+				echo "<div class='edit-directions'>editing id: {$base_url}?uid={$unique_id}</div>";
+			}
 		?>
         <?php 
-		$current_url = get_permalink();
         if (isset($_GET['uid'])) {
             $url_unique_id = $_GET['uid'];
             $unique_id = get_field('editing_id');
@@ -59,15 +62,17 @@ defined( 'ABSPATH' ) || exit;
                         // 'tags_input' => array($type),
                     ),
                     'submit_value'  => 'Submit update',
-					'html_after_fields' => "<a href='{$current_url}'>Stop Editting</a>",
 
             );
-            return acf_form($args); 
+            echo acf_form($args); 
             }
-        
+        	$current_url = get_permalink();
+			echo "<a id='stop-edit' href='{$current_url}'>Stop Editing</a>";
         }
         ?>
+		
 		<?php the_content(); ?>
+	
 		<?php echo untextbook_author();?>
 
 		<?php
