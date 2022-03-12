@@ -27,12 +27,14 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content">
 		<?php 
-			if (isset($_GET['uid'])) {
+			if (isset($_GET['uid']) || current_user_can('manage_options')) {
+				$base_url = get_permalink();
 				$url_unique_id = $_GET['uid'];
 				$unique_id = get_field('editing_id');
-				if($url_unique_id == $unique_id){
+				if($url_unique_id == $unique_id || current_user_can('manage_options')){
 					echo "<div class='edit-directions'>
 						<p>The URL for this page will enable you to come back and make edits. Copy it and save it somewhere safe. Do NOT share it!</p>
+						<div class='edit-url'>{$base_url}?/uid={$unique_id}</div>
 						<p>You can edit any of the fields below and update them by making your changes and clicking the <strong>Submit Update</strong> button.
 						<p>When you're done editing, leave the page or click the <strong>Done Editing</strong> button.
 						
