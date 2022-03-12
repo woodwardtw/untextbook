@@ -42,6 +42,25 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_6228eac58e4b5",
+            "label": "Editing ID",
+            "name": "editing_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -61,5 +80,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1622120225
+    "show_in_rest": 0,
+    "modified": 1646849149
 }

@@ -376,10 +376,11 @@ function book_get_login_status(){
 }
 
 
-function voices_form_creation(){//$type removed
+function voices_form_creation($unique){//$type removed
 	$status = book_get_front_form_status();
 	//var_dump($status);
 	//$lower = strtolower($type);
+	
 	$args = array(
 			'id' => 'new-voice',
 			'fields' => array('type','your_name'),
@@ -391,6 +392,9 @@ function voices_form_creation(){//$type removed
 	            // 'tags_input' => array($type),
 	        ),
 	        'submit_value'  => 'Add your voice.',
+			'html_after_fields' => '<input type="hidden" name="acf[field_6228eac58e4b5]" value="'.$unique.'"/>',
+			'return' => '%post_url%?uid=' . $unique,
+			// 'html_submit_button'  => '<input type="submit" id="foo" class="acf-button button button-primary button-large" value="%s" />',
 	);
 	if($status === 'live'){
 		$args['new_post']['post_status'] = 'publish';
@@ -399,6 +403,37 @@ function voices_form_creation(){//$type removed
 	}
 	return acf_form($args);
 }
+
+//add_action('acf/save_post', 'untextbook_unique_id');
+
+function untextbook_unique_id( $post_id ) {
+	//https://support.advancedcustomfields.com/forums/topic/pass-values-from-acf-form-to-thank-you-page/
+	// bail early if not a contact_form post
+	if( get_post_type($post_id) !== 'voice' ) {
+		
+		return;
+		
+	}
+	
+	// bail early if editing in admin
+	if( is_admin() ) {
+		
+		return;
+		
+	}
+
+	$unique = bin2hex(random_bytes(20));
+	update_field('editing_id', $unique, $post_id);
+	// if ($_POST['issubmitform'] === "yes"){
+        //wp_redirect( get_permalink() . '?uid=' . $unique ); 
+   // }
+	http_build_query(array_merge($_GET, array('uid'=>$unique)));
+
+    
+	
+}
+
+
 
 function voices_descriptions(){
 	 $perspective_1 = get_field('perspective_1','option');

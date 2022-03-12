@@ -59,7 +59,9 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<div class='col-md-12 form-block hide' id='voice-form'>
 				<?php voices_descriptions();//show voices descriptions?>
-				<?php echo voices_form_creation();//voice creation form?>
+				<?php 
+				$unique = bin2hex(random_bytes(20));//unique edit id
+				echo voices_form_creation($unique);//voice creation form?>
 			</div>
 		</div>
 
