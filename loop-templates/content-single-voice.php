@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || exit;
 		$unique_id = get_field('editing_id');
 			if (isset($_GET['uid'])) {				
 				$url_unique_id = $_GET['uid'];				
-				if($url_unique_id == $unique_id){
+				if($url_unique_id == $unique_id && $unique_id != ''){
 					echo "<div class='edit-directions'>
 						<p>The URL for this page will enable you to come back and make edits. Copy it and save it somewhere safe. Do NOT share it!</p>
 						<div class='edit-url'>{$base_url}?uid={$unique_id}</div>
@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
         if (isset($_GET['uid'])) {
             $url_unique_id = $_GET['uid'];
             $unique_id = get_field('editing_id');
-            if($url_unique_id == $unique_id){
+            if($url_unique_id == $unique_id && $unique_id != ''){
             	$args = array(
                     'id' => 'edit-voice',
                     'fields' => array('type','your_name'),
@@ -65,9 +65,10 @@ defined( 'ABSPATH' ) || exit;
 
             );
             echo acf_form($args); 
-            }
-        	$current_url = get_permalink();
+			$current_url = get_permalink();
 			echo "<a id='stop-edit' href='{$current_url}'>Stop Editing</a>";
+            }
+        	
         }
         ?>
 		
