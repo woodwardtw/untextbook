@@ -76,9 +76,9 @@ add_shortcode( 'chapterlist', 'untextbook_chapters_shortcode' );
 function untextbook_authors(){
 	if(get_field('authors')){
 		$authors = get_field('authors');
-		$html = "<div class='authors-block'><h2> Authored by ";		
+		$html = "<div class='authors-block'>Authored by ";		
 		$html .= $authors;
-		 return $html . "</h2></div>";
+		 return $html . "</div>";
 	}
 	
 }
@@ -540,7 +540,7 @@ function untextbook_show_voices($tag, $index){
 		} 
 	if(!get_field('associated_voices', $chapter_id) || $html == '') {
 		    $lower = strtolower($tag);
-			$html = "<div>We want your voice. Consider submitting a {$tag}.</div>";
+			$html = "<div>We want your voice. Add a {$tag}.</div>";
 		}
 	$header = "<div class='card'><div class='card-header' id='heading-{$index}'><h2><button class='voice-button' type='button' data-toggle='collapse' data-target='#collapse-{$index}' aria-expanded='false' aria-controls='collapse-{$index}'>{$tag} <span class='voice-count'>{$count}</span></button></h2></div><div id='collapse-{$index}' class='collapse' aria-labelledby='heading-{$index}' data-parent='#voices-accordion'><div class='card-body'>";
 	return $header . $html . '</div></div></div>';
