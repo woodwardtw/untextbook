@@ -85,3 +85,15 @@ function getTagBySlug($slug){
 	
 	return $tag_id;
 }
+
+
+//add chapters to archives
+
+function untextbook_add_custom_types_to_category_archives( $query ) {
+    if ( ! is_admin() && is_category() && $query->is_main_query() ) {
+        $query->set( 'post_type', array(
+                         'chapter',                       
+                    ) );
+    }
+}
+add_filter( 'pre_get_posts', 'untextbook_add_custom_types_to_category_archives' );
